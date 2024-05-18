@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "536667782176",
+    "project_id": "reflections-from-surah-yusuf",
+    "storage_bucket": "reflections-from-surah-yusuf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536667782176:android:64c3ba1db9b695ddb55045",
+        "android_client_info": {
+          "package_name": "com.toufikhasan.reflectionsfromsurahyusuf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536667782176-qno6ae6usgm294u0d24s1s6s80tn75c5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiz4zZ-7CqTq0PDPrg2sH3FyWl5yInoJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536667782176-qno6ae6usgm294u0d24s1s6s80tn75c5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

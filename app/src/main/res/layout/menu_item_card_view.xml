@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/chapterItemCard"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <TextView
+        android:id="@+id/chapter_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/bangla_font_common"
+        android:paddingHorizontal="10dp"
+        android:textColor="#C3000000"
+        android:textStyle="bold"
+        android:paddingVertical="10dp"
+        android:text="@string/app_name"
+        android:textSize="18sp"
+        card_view:drawableStartCompat="@drawable/check_icon"
+        android:drawablePadding="10dp"/>
+
+</androidx.cardview.widget.CardView>

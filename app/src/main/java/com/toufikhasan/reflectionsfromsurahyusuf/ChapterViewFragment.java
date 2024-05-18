@@ -4,12 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
 public class ChapterViewFragment extends Fragment {
     WebView webView;
@@ -31,8 +29,7 @@ public class ChapterViewFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chapter_view, container, false);
     }
@@ -53,7 +50,7 @@ public class ChapterViewFragment extends Fragment {
         String url = "chapter/" + chapterId + ".html";
 
         webView = view.findViewById(R.id.webview);
-        webView.setOnLongClickListener(v-> true);
+        webView.setOnLongClickListener(v -> true);
         webView.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 // Long press detected, prevent screenshot
@@ -62,7 +59,6 @@ public class ChapterViewFragment extends Fragment {
             return false;
         });
         webView.getSettings().setBuiltInZoomControls(false);
-
 
 
         AssetManager assetManager = requireActivity().getAssets();
@@ -75,7 +71,6 @@ public class ChapterViewFragment extends Fragment {
             inputStream.close();
             html = new String(buffer, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            e.printStackTrace();
             html = "<html><body><h4 style='color:red'>Error loading chapter file!</h1></body></html>";
         }
 

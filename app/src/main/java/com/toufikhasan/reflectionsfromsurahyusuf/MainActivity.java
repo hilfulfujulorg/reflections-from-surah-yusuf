@@ -203,8 +203,8 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, UPDATE_IN_APP_CODE);
-                } catch (IntentSender.SendIntentException e) {
-                    e.printStackTrace();
+                } catch (IntentSender.SendIntentException ignored) {
+
                 }
 
 

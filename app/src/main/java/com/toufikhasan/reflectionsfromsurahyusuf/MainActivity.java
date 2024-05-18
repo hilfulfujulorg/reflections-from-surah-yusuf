@@ -1,26 +1,16 @@
 package com.toufikhasan.reflectionsfromsurahyusuf;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -30,8 +20,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
@@ -42,11 +30,6 @@ import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -55,11 +38,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayoutMain;
     ActionBarDrawerToggle toggle;
-    LinearLayout bannerAdsLayout;
     NavController navController;
     Bundle bundle;
-    private String bannerAdsId;
-    private DatabaseReference myRef;
 
 
     @Override
@@ -85,39 +65,12 @@ public class MainActivity extends AppCompatActivity {
         drawerLayoutMain = findViewById(R.id.drawerLayout);
 
         // Banner Ads
-        bannerAdsLayout = findViewById(R.id.bannerAdsLayout);
 
         // Drawable Navigation Show Toggle
         toggle = new ActionBarDrawerToggle(this, drawerLayoutMain, toolbar, R.string.openNavigation, R.string.closeNavigation);
         drawerLayoutMain.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_justification_icon);
-
-        if (InternetConnected.isConnected(this)) {
-            myRef = FirebaseDatabase.getInstance().getReference(getResources().getString(R.string.AdsSetting));
-
-            myRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    boolean AdsStatus = Boolean.TRUE.equals(snapshot.child("Show").getValue(boolean.class));
-                    bannerAdsId = snapshot.child("BannerAds").getValue(String.class);
-                    if (AdsStatus) {
-                        bannerAdsLayout.setVisibility(View.VISIBLE);
-                        bannerAdsLayout.addView(BannerAd.getInstance(MainActivity.this, bannerAdsId).getAdView());
-                    } else {
-                        if (bannerAdsLayout.getChildCount() > 0) {
-                            bannerAdsLayout.removeAllViews();
-                        }
-                        bannerAdsLayout.setVisibility(View.GONE);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
 
@@ -293,18 +246,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Updating now...", Toast.LENGTH_SHORT).show();
         }
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        if(bannerAdsLayout.getVisibility() == View.VISIBLE){
-            if (bannerAdsLayout.getChildCount() > 0) {
-                bannerAdsLayout.removeAllViews();
-            }
-            bannerAdsLayout.setVisibility(View.GONE);
-        }
-
-        super.onDestroy();
     }
 
     @Override
